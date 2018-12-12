@@ -1,8 +1,9 @@
 #!/usr/bin/env python3
 
-def big_palindromes(top=5):
-    start = 999
-    stop = start - 100 # assumption: palindrome exists that is product of numbers in highest 100
+
+def big_palindromes(digits=3, top=5):
+    start = (10 ** digits) - 1
+    stop = int(0.9 * start) # assumption: palindrome exists that is product of numbers in highest 10%
 
     palindromes = []
     for i in range(start, stop, -1):
@@ -37,6 +38,15 @@ def is_pal_math(num):
     return flipped == num
 
 
-for pal, i, j in big_palindromes():
-    print("{} = {} * {}".format(pal, i, j))
+
+if __name__ == "__main__":
+    import sys
+
+    digits = 3
+    if len(sys.argv) > 1:
+        digits = int(sys.argv[1])
+
+    for pal, i, j in big_palindromes(digits):
+        print("{} = {} * {}".format(pal, i, j))
+
 
