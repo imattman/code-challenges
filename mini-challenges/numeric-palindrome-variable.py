@@ -3,16 +3,15 @@
 
 def big_palindromes(digits=3, top=5):
     start = (10 ** digits) - 1
-    stop = int(0.9 * start) # assumption: palindrome exists that is product of numbers in highest 10%
+    stop = int(0.8 * start) # assumption: palindrome exists that is product of numbers in highest 20%
 
     palindromes = []
     for i in range(start, stop, -1):
         for j in range(i, stop, -1):
             prod = i * j
-            # if is_pal_str(prod):
-            if is_pal_math(prod):
+            if is_pal_str(prod):
+            # if is_pal_math(prod):
                 palindromes.append((prod, i, j))
-                break
 
     palindromes = sorted(list(palindromes), reverse=True)
     return palindromes[:top]

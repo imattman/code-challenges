@@ -2,16 +2,15 @@
 
 def big_palindromes(top=5):
     start = 999
-    stop = start - 100 # assumption: palindrome exists that is product of numbers in highest 100
+    stop = start - 200 # assumption: palindrome exists that is product of numbers in highest 200
 
     palindromes = []
     for i in range(start, stop, -1):
         for j in range(i, stop, -1):
             prod = i * j
-            # if is_pal_str(prod):
-            if is_pal_math(prod):
+            if is_pal_str(prod):
+            # if is_pal_math(prod):
                 palindromes.append((prod, i, j))
-                break
 
     palindromes = sorted(list(palindromes), reverse=True)
     return palindromes[:top]
