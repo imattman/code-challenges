@@ -28,6 +28,7 @@ def prime_factors(count=100):
         is_prime = True
         for prime in primes:
             if prime > mid:
+                # no point in checking beyond geometric mean
                 break
             if n % prime == 0:
                 is_prime = False
@@ -42,20 +43,18 @@ def sieve(count=100, size_factor=15):
     size = count * size_factor
     sieve = [True] * size
     # premark 0 and 1 as non-prime
-    sieve[0] = sieve[1] = False
+    sieve[0:2] = (False, False)
     # geometric mean as midpoint
     mid = int(len(sieve) ** 0.5)
 
-    prime = 2
-    while prime <= mid:
-        for multiple in range(prime + prime, len(sieve), prime):
-            sieve[multiple] = False
-        # advance one and scan forward to the next True value for next prime
-        prime += 1
-        while not sieve[prime]:
-            prime += 1
+    for n in range(2, mid + 1):
+        # next True is the next prime
+        if sieve[n]:
+            # disqualify all multiples of n
+            for multiple in range(n + n, len(sieve), n):
+                sieve[multiple] = False
 
-    primes = [n for n, is_prime in enumerate(sieve) if is_prime]
+    primes = [n for (n, is_prime) in enumerate(sieve) if is_prime]
     if len(primes) > count:
         primes = primes[:count]
     return primes
