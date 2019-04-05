@@ -19,5 +19,7 @@ These are some additional coding challenges to sharpen your Python programming s
 
 See [CONTRIBUTE.md][contribute_howto] for guidelines on contributing additional challenges and updates.
 
+PRs are gladly accepted!
+
 
 [contribute_howto]:https://github.com/PDXPythonPirates/code-challenges/blob/master/CONTRIBUTE.md
